@@ -1,0 +1,4 @@
+
+This is the repository for the final assignment of the Introduction to open data science course, spring 2017.
+
+https://elinaturunen.github.io/IODS-final/
