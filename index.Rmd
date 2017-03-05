@@ -7,7 +7,5 @@ code_folding: hide
 
 This is the index file for the final assignment
 
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r child = "final.Rmd"}
 ```
