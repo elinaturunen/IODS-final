@@ -53,7 +53,7 @@ str(happiness2)
 summary(happiness2)
 
 # save data to data folder
-write.csv(happiness2, file = "happiness2.csv", row.names=TRUE)
+write.csv(happiness2, file = "happiness2.csv", row.names=FALSE)
 
 # read data 
 read.table("happiness2.csv", sep = ",", header=TRUE)
