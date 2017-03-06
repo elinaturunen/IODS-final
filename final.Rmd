@@ -144,7 +144,32 @@ In the second regression only social support, absence of corruption and generosi
 
 The confidence intervals for the significant variables vary between around 0.2-0.5 so they are not supernarrow when considered in relation to the distributions of the variables. *LUOTTAMUSVÄLIT POIS?
 
+
+Then I want to divide freedom into two, based on the distributions point where it seems to start getting higher values. I decided to divide it at 0.35. 
+
+```{r}
+happiness2_f <- mutate(happiness2, high_freedom = freedom > 0.35)
+g2 <- ggplot(data = happiness2_f, aes(x = high_freedom))
+g2 + geom_bar() + ggtitle("Distribution of the high freedom variable")
+```
+
+It seems that greater share of values for freedom are high with the chosen limit. Then I do (this time logistic) regression again, without the happiness score, to see which variables have effect on the higher values of freedom.  
+
+```{r}
+m <- glm(high_freedom ~ gdpcapita + socialsupport + hlifeexp + corruption + generosity, data = happiness2_f, family = "binomial")
+summary(m)
+OR <- coef(m) %>% exp
+CI <- confint(m) %>% exp
+cbind(OR, CI)
+```
+
+Social support, corruption and generosity are statistically significant and they are all positively correlated with high freedom. Compared to last linear regression model the variables get 20-28 times higher correlation with high freedom. Corruption has the highest estimate of 11,62. In countries where freedom is perceived higher, social support, corruption and generosity are important explainers.
+
+The odds ratios seem to be large. If there is social support, a person is 3.22+01 or 32,24 times likely to have a perception of high freedom compared to if there was no social support. But if there was a perception of no corruption, a person would be 111 768 times likely to have a perception of high freedom than without. Is this right, is there any point in these numbers anymore? *CONF INT POIS?
+
 Linear multiple regression is suitable method for the question, when we want to examine correlations of variables and the dependent variable is continuous. *PAIKKA
+
+*MEANING
 
 
 Next I want to see which variables seem to be most important with principal component analysis. I need to first standardize the variables and then perform the analysis. Then I take rounded percentages of variance captured by principal components and create objects for axis labels before drawing a biplot.
@@ -173,60 +198,19 @@ The angle between the variables on the x-axis is quite small so the variables se
 I don't know how to validate the principal component analysis method. It seems to be working well compared to previous knowledge of the data.
 
 
-From here on I would like to look at the...
 
-
-```{r}
-set.seed(123)
-dist_eu <- dist(happiness2, method = "euclidean")
-k_max <- 10
-twcss <- sapply(1:k_max, function(k){kmeans(dist_eu, k)$tot.withinss})
-plot(1:k_max, twcss, type='b')
-km <-kmeans(dist_eu, centers = 2)
-pairs(happiness2, col = km$cluster)
-```
-
-
-
-Then I want to divide freedom into two, based on the distributions point where it seems to start getting higher values. I decided to divide it at 0.35. 
-
-```{r}
-happiness2_f <- mutate(happiness2, high_freedom = freedom > 0.35)
-g2 <- ggplot(data = happiness2_f, aes(x = high_freedom))
-g2 + geom_bar() + ggtitle("Distribution of the high freedom variable")
-```
-
-It seems that greater share of values for freedom are high with the chosen limit. Then I do (this time logistic) regression again, without the happiness score, to see which variables have effect on the higher values of freedom.  
-
-```{r}
-m <- glm(high_freedom ~ gdpcapita + socialsupport + hlifeexp + corruption + generosity, data = happiness2_f, family = "binomial")
-summary(m)
-OR <- coef(m) %>% exp
-CI <- confint(m) %>% exp
-cbind(OR, CI)
-```
-
-
-
-Social support, corruption and generosity are statistically significant.
-
-
-a thorough interpretation of the results 
-including a validation analysis of the method
-CAPTIONS
-
-PALJON VAIHTELUA SOCIAL SUPPORTISSA ?
-MITEN MENEE ? onko loogisen tuntuinen ?
+PALJON VAIHTELUA SOCIAL SUPPORTISSA ? looginen ?
 
 menetelmien yhdistäminen
-lda + regressio
+lda/pca/mca + regressio
 
 
 # Conclusions and discussion 
 
 -regressiot
 GDP per capita, healthy life expectancy, social support and happiness score explain most of the variance from the features in the happiness2 data and thereby explain greater share of differences between countries. There are also a little bit greater differences between countries in relation to these features than others. Trust-related variables freedom, corruption and generosity are not be so constituent as them in making or explaining differences.
--
+-pca
+
 
 
 
