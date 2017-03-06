@@ -210,8 +210,6 @@ cbind(OR, CI)
 
 Social support, corruption and generosity are statistically significant.
 
-ks video
-
 
 a thorough interpretation of the results 
 including a validation analysis of the method
