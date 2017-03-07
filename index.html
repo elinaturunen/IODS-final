@@ -122,7 +122,6 @@ $(document).ready(function () {
 </div>
 
 
-<p>This is the index file for the final assignment</p>
 <div id="abstract" class="section level4">
 <h4>Abstract</h4>
 <p>This exercise concerns objective and subjective measures of well-being. Research questions are is there correlation between the happiness score and other variables, freedom and other variables and higher freedom and other variables; and what explains variance in the data. The data originates from the World Happiness Report that examines happiness and subjective well-being as measures of human development. Methods used are multiple regression, logistic regression and principal component analysis.</p>
@@ -326,9 +325,8 @@ summary(m)</code></pre>
 ## 
 ## Number of Fisher Scoring iterations: 6</code></pre>
 <pre class="r"><code>OR &lt;- coef(m) %&gt;% exp
-CI &lt;- confint(m) %&gt;% exp</code></pre>
-<pre><code>## Waiting for profiling to be done...</code></pre>
-<pre class="r"><code>cbind(OR, CI)</code></pre>
+CI &lt;- confint(m) %&gt;% exp
+cbind(OR, CI)</code></pre>
 <pre><code>##                         OR        2.5 %       97.5 %
 ## (Intercept)   4.928498e-03 4.683861e-04 3.527310e-02
 ## gdpcapita     2.142913e+00 2.813534e-01 1.702269e+01
