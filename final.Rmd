@@ -138,7 +138,7 @@ Next I divided the freedom variable into two at 0.35, based on where it started 
 ```{r fig.width=6, fig.height=4}
 happiness2_f <- mutate(happiness2, high_freedom = freedom > 0.35)
 g2 <- ggplot(data = happiness2_f, aes(x = high_freedom))
-g2 + geom_bar() + ggtitle("Distribution of the high freedom variable")
+g2 + geom_bar() + ggtitle("Distribution of the freedom variable")
 ```
 
 It seems that greater share of values for freedom are high with the chosen limit. Next I did regression again, this time logistic regression, to see which variables have correlation with higher values of freedom.  
@@ -156,6 +156,7 @@ Social support, corruption and generosity are statistically significant and they
 The odds ratios seem to be large. If there is social support, a person is 32,24 times more likely to have a perception of high freedom compared to if there was no social support. But if there was a perception of no corruption, a person would be 111 768 times more likely to have a perception of high freedom than without. I don't know is there any point in this anymore. 
 
 I suppose linear multiple regression is suitable method for the question, when examining correlations of variables and the dependent variable is continuous.
+
 
 Next I did principal component analysis to see which variables are important in explaining variance. The variables are standardized before the analysis. Then I took rounded percentages of variance captured by principal components and created objects for axis labels before drawing a biplot.
 
