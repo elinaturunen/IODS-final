@@ -142,7 +142,7 @@ g2 + geom_bar() + ggtitle("Distribution of the high freedom variable")
 
 It seems that greater share of values for freedom are high with the chosen limit. Next I did regression again, this time logistic regression, to see which variables have correlation with higher values of freedom.  
 
-```{r}
+```{r, message=FALSE}
 m <- glm(high_freedom ~ gdpcapita + socialsupport + hlifeexp + corruption + generosity, data = happiness2_f, family = "binomial")
 summary(m)
 OR <- coef(m) %>% exp
