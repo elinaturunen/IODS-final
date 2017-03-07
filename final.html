@@ -132,12 +132,12 @@ $(document).ready(function () {
 <h4>Research questions</h4>
 <p>Happiness is nowadays proposed as a measure of well-being. It has been been questioned a lot for different reasons related to for example method and normativity. World Happiness Report (2016) examines happiness as a measure of well-being. In this exercise variables of the report, which perhaps not all are traditionally used, will be looked at, and the data of the report will be used.</p>
 <p>First the basic setting will be explored<br />
-<em>Is there correlation between the happiness score and other variables?</em></p>
+<em>What is explaining happiness in the data?</em></p>
 <p>The happiness score can be regarded quite vague. Autonomy of people seems more interesting in a sense that it has to do with rights, not affects or emotions. They are not unnecessary, but hard to propose as a legitimate policy targets. Therefore I will look at<br />
-<em>Is there correlation between freedom and other variables?</em><br />
-<em>And higher freedom and other variables?</em></p>
+<em>What is explaining freedom in the data?</em><br />
+<em>And higher freedom?</em></p>
 <p>Some aspects of data might be more important than others, than e.g. happiness or freedom, so it is also good to explore.<br />
-<em>What explains variance in the data, which variables are central in dividing the data?</em></p>
+<em>Which variables are most important in dividing data?</em></p>
 </div>
 <div id="data" class="section level4">
 <h4>Data</h4>
@@ -160,7 +160,7 @@ $(document).ready(function () {
 <div id="data-wrangling" class="section level4">
 <h4>Data wrangling</h4>
 <p>Before analysis I changed column names to shorter descriptive names. I excluded variables happiness rank, region, dystopia and confidence intervals. I changed country column to name the rows and excluded the country column.</p>
-<p>Script here: <a href="https://github.com/elinaturunen/IODS-final/blob/208cf4a26fded4376963e0408da2fa13527487d1/final.R" class="uri">https://github.com/elinaturunen/IODS-final/blob/208cf4a26fded4376963e0408da2fa13527487d1/final.R</a></p>
+<p>Script here: <a href="https://github.com/elinaturunen/IODS-final/blob/master/final.R" class="uri">https://github.com/elinaturunen/IODS-final/blob/master/final.R</a></p>
 </div>
 <div id="explorations-of-the-variables" class="section level4">
 <h4>Explorations of the variables</h4>
@@ -326,9 +326,8 @@ summary(m)</code></pre>
 ## 
 ## Number of Fisher Scoring iterations: 6</code></pre>
 <pre class="r"><code>OR &lt;- coef(m) %&gt;% exp
-CI &lt;- confint(m) %&gt;% exp</code></pre>
-<pre><code>## Waiting for profiling to be done...</code></pre>
-<pre class="r"><code>cbind(OR, CI)</code></pre>
+CI &lt;- confint(m) %&gt;% exp
+cbind(OR, CI)</code></pre>
 <pre><code>##                         OR        2.5 %       97.5 %
 ## (Intercept)   4.928498e-03 4.683861e-04 3.527310e-02
 ## gdpcapita     2.142913e+00 2.813534e-01 1.702269e+01
@@ -386,7 +385,7 @@ biplot(pca_happiness2_std, cex = c(0.5, 1.5), col = c(&quot;black&quot;, &quot;g
 <p>It seems that GDP per capita, healthy life expectancy, social support and happiness score explain most of the variance from the features in the data. It means that they explain greater share of differences between countries. Freedom, corruption and generosity are not so constituent as them in making or explaining differences and trust-related variables not so essential in this sense.</p>
 <p>Differences in GDP per capita and healthy life expectancy seem quite expected, between industrialised and developing countries. In the biplot we can see a high concentration of rich countries in the lower left corner. Not all x- and y-axis features are uncorrelated.</p>
 <p>The angle between the variables on the x-axis is quite small so the variables have quite high correlation with each other. The variables on the y-axis PC2 have a wider angle between them and a bit smaller correlation. The correlation between the features and the pc axis is stronger for the features on the x-axis than for them on the y-axis. Features on the y-axis seem to have smaller standard deviations based on the lengths of the arrows and we can see that also from the table. It means that there are greater differences between countries in relation to features on the x-axis.</p>
-<p>I don’t know how to validate the principal component analysis method. It seems to be working well compared to previous knowledge of the data.</p>
+<p>PCA seems to be working well compared to previous knowledge of the data. Linear discriminant analysis, k-means clustering and multiple correspondence analysis are other methods for finding essential divisions in data and closely related to each other. K-means can be used to find clusters, not essential variables in the same way. LDA can be used to finding variables that separate classes best and the target needs to be categorical, which was not the purpose here. MCA can be used to find structure or important dimensions, like PCA, for categorical variables.</p>
 </div>
 <div id="conclusions-and-discussion" class="section level4">
 <h4>Conclusions and discussion</h4>

@@ -67,7 +67,7 @@ Script here: <https://github.com/elinaturunen/IODS-final/blob/master/final.R>
 
 First I had to fix rownames, because they did not preserve (there was a problem). 
 
-```{r}
+```{r, echo=TRUE}
 happiness2 <- read.table("happiness2.csv", sep = ",", header=TRUE)
 str(happiness2)
 colnames(happiness2)[1] <- "country"
