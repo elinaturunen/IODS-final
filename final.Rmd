@@ -60,7 +60,7 @@ Focus on inequality was new in the report 2016 update. Unfortunately some variab
 
 Before analysis I changed column names to shorter descriptive names. I excluded variables happiness rank, region, dystopia and confidence intervals. I changed country column to name the rows and excluded the country column.
 
-Script here: <https://github.com/elinaturunen/IODS-final/blob/208cf4a26fded4376963e0408da2fa13527487d1/final.R>
+Script here: <https://github.com/elinaturunen/IODS-final/blob/master/final.R>
 
 
 #### Explorations of the variables
