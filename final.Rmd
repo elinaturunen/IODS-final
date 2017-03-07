@@ -4,11 +4,11 @@ author: "Elina Turunen"
 date: 7.3.2017
 e-mail: elina.turunen@helsinki.fi
 output: 
-html_document:
-code_folding: hide
+  html_document:
+    code_folding: hide
 ---
-  
-  
+
+
 #### Abstract
 
 This exercise concerns objective and subjective measures of well-being. Research questions are what is explaining happiness, freedom and higher freedom in the data, and which variables are most important in dividing data. The data originates from the World Happiness Report that examines happiness and subjective well-being as measures of human development. Methods used are multiple regression, logistic regression and principal component analysis.
