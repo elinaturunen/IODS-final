@@ -1,76 +1,81 @@
 ---
 title: "IODS-course final assignment"
 author: "Elina Turunen"
-date: 1.3.2017
+date: 7.3.2017
 e-mail: elina.turunen@helsinki.fi
 output: html_document
 code_folding: hide
 ---
+  
+  
+#### Abstract
 
-Happiness is nowadays proposed as a measure of well-being. It has been been questioned a lot for different reasons related to for example method and normativity. World Happiness Report (2016) examines happiness as a measure of well-being. Here some other than the more traditionally used variables of well-being will be looked at and the data of the report will be used in this exercise.
+This exercise concerns objective and subjective measures of well-being. Research questions are is there correlation between the happiness score and other variables, freedom and other variables and higher freedom and other variables; and what explains variance in the data. The data originates from the World Happiness Report that examines happiness and subjective well-being as measures of human development. Methods used are multiple regression, logistic regression and principal component analysis.
+
+GDP per capita, social support, healthy life expectancy, freedom and absence of corruption are positively correlated with happiness explaining 78 % of the variation of the happiness score. Trust-related variables social support, absence of corruption and generosity are positively correlated with freedom and high freedom. Most of the variance from the features and greater share of differences between countries is explained by GDP per capita, healthy life expectancy, social support and happiness score. First two of these variables could be dividing different levels of development. Other variables like trust and abilities are possibly needed to give meaning to the concept. If freedom is of interest, more specific questions could enhance the study.
+
 
 #### Research questions 
 
-First the basic setting will be explored 
-- Is there correlation between the happiness score and other variables?
+Happiness is nowadays proposed as a measure of well-being. It has been been questioned a lot for different reasons related to for example method and normativity. World Happiness Report (2016) examines happiness as a measure of well-being. In this exercise variables of the report, which perhaps not all are traditionally used, will be looked at, and the data of the report will be used.
 
-The happiness score is quite vague. Autonomy of people seems more interesting in a sense that it has to do with rights, not affects or emotions. They are not unnecessary, but hard to propose as a legitimate policy targets.
-- Is there correlation between freedom and other variables? (Are other variables contributing to freedom?)
+First the basic setting will be explored  
+*What is explaining happiness in the data?*
 
-Some aspects of data might be more effective than others, perhaps not happiness nor freedom, so it is good to explore. 
-- What explains variance in the data, which variables are central in dividing the data?
+The happiness score can be regarded quite vague. Autonomy of people seems more interesting in a sense that it has to do with rights, not affects or emotions. They are not unnecessary, but hard to propose as a legitimate policy targets. Therefore I will look at  
+*What is explaining freedom in the data?*  
+*And higher freedom?*
 
-TÄMÄ VIELÄ ENNEN EDELLISTÄ?
-It is also interesting to see if there is some point where most countries differ in relation to freedom.
-- What is the cut point of the freedom variable? MIKÄ TÄMÄ OLISI ?
-VAI TÄMÄ
-It is also interesting to see if there is some division of data, a number of clusters the data will divide at best.
-- What is the optimal number of clusters the data will divide itself?
+Some aspects of data might be more important than others, than e.g. happiness or freedom, so it is also good to explore.  
+*Which variables are most important in dividing data?*
 
 
 #### Data
 
 The data originates from the World Happiness Report and it is downloaded from kaggle.com. The first such report was published in 2012 in support of the High Level Meeting at the United Nations on happiness and well-being. 2016 update is edited by John Helliwell, Richard Layard and Jeffrey Sachs. The report is published by The Sustainable Development Solutions Network (SDSN) that was commissioned by UN Secretary-General Ban Ki-moon. 
 
-The report is a survey of the state of global happiness. It examines happiness and subjective well-being as measures human development. It was done also for policy use. Survey questions originate from the Gallup World Poll that was carried out by Gallup Inc. It provided data for the study. Some measures are created with data from the World Bank, OECD and WHO.
+The report is a survey of the state of global happiness. It examines happiness and subjective well-being as measures human development. It was also done for policy use. Survey questions originate from the Gallup World Poll that was carried out by Gallup Inc. It provided data for the study. Some measures are created with data from the World Bank, OECD and WHO.
 
+The variables of the data are as follows:
 
-The variables of the data are as follows: *BULLET POINTS
+* Happiness score is based on answers to the life evaluation question of rating current lives on a scale from 0 (worst) to 10 (best), that is the so-called Cantril ladder. Happiness rank is the happiness score put in order. The happiness score is intended to represent people's happiness.  
 
-Happiness scores are based on answers to the life evaluation question of rating current lives on a scale from 0 (worst) to 10 (best), that is the so-called Cantril ladder. Happiness rank is the happiness score put in order. The happiness score is intended to represent people's happiness. *It is though not so clear what different people mean by that and mean by that at different times. 
+* GDP per capita is gross domestic product per capita in purchasing power parity, PPP, at dollar prices. The equation uses the natural log of GDP per capita.  
 
-GDP per capita is gross domestic product per capita in purchasing power parity, PPP, at dollar prices. The equation uses the natural log of GDP per capita. Healthy life expectancy is healthy life expectancy at birth. These variables represent state of economy and general level of health sector of countries.
+* Healthy life expectancy is healthy life expectancy at birth. This and previous variable represent state of economy and general level of health sector of countries.
 
-Freedom is satisfaction with freedom to choose what to do with ones life (national average of binary responses). It portrays chances and limitations to act. Family variable is supposed to describe social support: having relatives or friends 
-one can count on when help is needed (national average of binary responses). Trust is national average of responses to questions is corruption widespread throughout the government and within businesses (average of binary responses). Low values refer to corruption and high values to absence of corruption. *It can be asked whether the perceptions are trustworthy - are people having a rosy picture of their surroundings. For example Finland has been portrayed as a country of low corruption, but it is also known for example that corruption is not rare in construction business. 
+* Freedom is satisfaction with freedom to choose what to do with ones life (national average of binary responses). It portrays chances and limitations to act.  
 
-Generosity is the residual of regressing national average of responses to question 
-of donating money to a charity in the past month (binary) on GDP per capita. It is supposed to describe people's will to help others. Dystopia residual variable is a hypothetical country that has values equal to world’s lowest national averages for each of the six factors other than happiness. It was used as a benchmark against which countries can be compared in terms of six (key) variables and letting sub-bars (of these variables) to be of positive width in the report.
+* Family variable is supposed to describe social support: having relatives or friends one can count on when help is needed (national average of binary responses).  
+* Trust is national average of responses to questions is corruption widespread throughout the government and within businesses (average of binary responses). Low values refer to corruption and high values to absence of corruption.  
 
-In the report 2016 update focus on inequality was new. Unfortunately some variables were not available in kaggle, for example the gini of household income and and gini index. They would have been important variables for the exercise.
+* Generosity is the residual of regressing national average of responses to question of donating money to a charity in the past month (binary) on GDP per capita. It is supposed to describe people's will to help others.  
+
+* Dystopia residual variable is a hypothetical country that has values equal to world’s lowest national averages for each of the six factors other than happiness. It was used as a benchmark against which countries can be compared in terms of six key variables and letting sub-bars of these variables to be of positive width in the report.  
+
+Focus on inequality was new in the report 2016 update. Unfortunately some variables were not available in kaggle, for example the gini of household income and gini index. They would have been important variables for the exercise.
 
 
 #### Data wrangling 
 
-Before analysis I changed column names to shorter descriptive names. I excluded variables happiness rank, region, dystopia and confidence intervals. I changed country column to name the rows and excluded the country column. (2)
+Before analysis I changed column names to shorter descriptive names. I excluded variables happiness rank, region, dystopia and confidence intervals. I changed country column to name the rows and excluded the country column.
 
-Script is to be found here: LINK 
+Script here: <https://github.com/elinaturunen/IODS-final/blob/208cf4a26fded4376963e0408da2fa13527487d1/final.R>
 
 
 #### Explorations of the variables
 
-First I had to fix rownames, because they did not preserve. 
+First I had to fix rownames, because they did not preserve (there was a problem). 
 
 ```{r}
 happiness2 <- read.table("happiness2.csv", sep = ",", header=TRUE)
 str(happiness2)
 colnames(happiness2)[1] <- "country"
 rownames(happiness2) <- happiness2$country
-rownames(happiness2)
 happiness2 <- dplyr::select(happiness2, -country)
 ```
 
-Then I looked at the distributions of the variables by drawing a histogram of each variable and looking at the summary of the variables. Then I looked at the relations of the variables by drawing ggpairs.
+Then I looked at the distributions of the variables by drawing a histogram and printing a summary of the variables. Then I draw ggpairs to look at the relations of the variables.
 
 ```{r, message=FALSE}
 library(ggplot2); library(GGally); library(tidyr); library(dplyr)
@@ -83,77 +88,59 @@ p <- ggpairs(happiness2, mapping = aes(), lower = list(combo = wrap("facethist",
 p
 ```
 
-Most of the variables are binary of which national average has been taken. They are not distributed very evenly. The variables describe differences between countries in certain things. There are a few countries where there is perception of absence of corruption, the perception being more often that corruption is widespread in the government and within businesses. Social support is leaning towards higher social support. It is a variable not necessarily dependent on country's economy. GDP per capita, healthy life expectancy and freedom are also leaning to right that is higher GDP, life expectancy and freedom, GDP being a bit more varied. The generosity variable leans to lower generosity. Only a few countries have higher generosity. The happiness score is relatively evenly distributed if one can say so. So there are differences in rating life happiness. 
+Most of the variables are binary of which national average has been taken. They are not distributed very evenly. The variables describe differences between countries in certain things. There are a few countries where there is perception of absence of corruption, the perception being more often that corruption is widespread in the government and within businesses. Social support is leaning towards higher social support. It is a variable not necessarily dependent on country's economy. GDP per capita, healthy life expectancy and freedom are also leaning to right that is higher GDP, life expectancy and freedom, GDP being a bit more varied. The generosity variable leans to lower generosity. Only a few countries have higher generosity. The happiness score is relatively evenly distributed if one can say so. So there are differences in rating life happiness. It is interesting that distributions of corruption and freedom reach only maximum values 0.6 for freedom and 0.5 for corruption.
 
-It is interesting that distributions of corruption and freedom reach only maximum values 0.6 for freedom and 0.5 for corruption.
-
-GDP per capita, social support and healthy life expectancy have strong correlation with the happiness score, and quite strong for it and freedom. So it seems that there is correlation between the happiness score and other variables, which is no surprise since the data is very much planned and, I suppose, tested beforehand. Also freedom variable seems to be positively correlated with other variables. Strong correlation can be found between GDP per capita and healthy life expectancy and quite strong for social support; quite strong for social support and healthy life expectancy; and freedom and corruption.
-
-(*What explains variance in the data, which variables are central in dividing the data? -> which seem to have variance ?
-corruption, generosity, social support ? have ohut häntä
-vai tuleeko varianssi tasaisemmin jakautuneista like the happiness score?)
-
-(*Based on the distributions, it seems that the cut point of the freedom variable could be around 0.35?)
+GDP per capita, social support and healthy life expectancy have strong correlation with the happiness score, and quite strong for it and freedom. So it seems that there is correlation between the happiness score and other variables, which is no surprise since the data is very much tested and used beforehand. Also freedom variable seems to be positively correlated with other variables. Strong correlation can be found between GDP per capita and healthy life expectancy and quite strong for social support; quite strong for social support and healthy life expectancy; and freedom and corruption.
 
 
 #### Methods
 
-I will first do multiple regression analysis to see are other variables correlated with the happiness score, it being the dependent variable. Then I will then do the same for the freedom variable, so that x y ja z (not happiness?) being explaining variables and freedom being dependent.
-
-I will then see what explains variance in the data by using the principal component analysis with which I can see which components capture the maximum amount of variance, as well as correlation between variables and components. 
-
-Then I will (OR BEFORE?) look at the cut point of the freedom variable with the k-means OR k-means: determine k. That will tell what is the optimal number of clusters to divide the data. The purpose is to see what different (country?) groups there are in relation to freedom. With that we can perhaps find what is important affecting there.
+First multiple regression is performed to see if variables are correlated with the happiness score, it being the dependent variable. Then the same is done for freedom variable it being dependent (without happiness score) and for higher freedom. Then variance in the data is explored by using the principal component analysis.
 
 
 #### Results  
-Presentation of the results of your analysis including visualizations and summaries and a thorough interpretation of the results including a validation analysis of the method.
 
-First I did multiple regression with happiness score as dependent variable. 
+First I did multiple regression with happiness score as a dependent variable. 
 
 ```{r}
 m <- lm(happ.score ~ gdpcapita + socialsupport + hlifeexp + freedom + corruption + generosity, data = happiness2)
-
 summary(m)
-
 CI <- confint(m) %>% exp
 cbind(CI)
 ```
 
-In the first regression all other variables than generosity are statistically significant, which was expected due to previous use of the data. The correlation is positive in all cases. For example when GDP per capita grows by one, happiness score grows by 0.7214. (When social support grows by one, happiness score grows by 1.2298. When healthy life expectancy grows by one, happiness score grows by 1.4364. When freedom grows by one, happiness score grows by 1.5139. When absence of corruption grows by one, happiness score grows by 0.9189.) These variables explain 78 % of the variation of the happiness score that is a lot. 
+In the first regression all other variables than generosity are statistically significant. The correlation is positive in all cases. For example when GDP per capita grows by one, happiness score grows by 0.7214. These variables explain 78 % of the variation of the happiness score that can be regarded a lot. I wonder why generosity is not significant in this model - is its relative effect compared to other variables low?
 
-I wonder why generosity is not significant in this model, is its relative effect compared to other variables low.
+Some of the confidence intervals are wide, especially for healthy life expectancy and freedom. With freedom happiness will get a value between 2.1-9.8 with the probability of 95 %. 
 
-Some of the confidence intervals are wide, especially for healthy life expectancy and freedom. The value of happiness with freedom is between 2.1-9.8 with the probability of 95 %. (*They are perhaps not the most powerful explanators for happiness.) LUOTTAMUSVÄLIT POIS?
+Freedom has highest estimate in the regression, but confidence interval for it is wide. Can this refer to differences in perception of the concept of freedom? For example if one understands freedom as structural things providing certain rights or personal situation, the following happiness score could vary a lot. Freedom and healthy life expectancy are perhaps not the most powerful explainers for happiness. 
 
-Healthy life expectancy, GDP per capita and absence of corruption refer to the organization of the state. Social support is not necessarily dependent on that, it is possible to interpret the question concerning neighborhood or personal situations. Freedom is also a bit loose concept, it is possible to understand the question in many ways - freedom to choose what to do in relation to law and human rights or in relation to education system and social policy or in relation to personal situations. For example one could answer having high level of freedom in society in general even if one had personal hindrances such as need for rehabilitation that was not properly received. 
+Healthy life expectancy, GDP per capita and absence of corruption refer to the organization of the state. Social support is not necessarily dependent on state. As said, freedom is perhaps a bit loose concept, it is possible to understand the question in many ways - freedom to choose what to do in relation to law and human rights or in relation to education system and social policy or in relation to personal situations. For example one could have high level of freedom in society in general even if one had personal hindrances such as need for rehabilitation that was not properly received. Also perceptions of absence of corruption can have a bit of bias if people have a rosy picture of their surroundings. For example Finland has been portrayed as a country of low corruption (though perhaps less recently), but it is known that corruption is not rare for example in construction business. 
 
-Research around happiness is also related to sustainability goals concerning also environmental sustainability. In that sense I understand that it is relevant to examine subjective well-being and not just objective and material aspects. But freedom seems to me a bit more concrete or material goal than happiness. You can be happy, but not free or unhappy, but free. Freedom at least relates to some rights and possibilities. There are many difficulties that lie in subjective questionings. Some connect happiness studies to positive psychology and compulsion of consumer culture to be happy. Therefore we can ask in what sense it is contributing to sustainability.
+Research around happiness is related to sustainability goals concerning environmental sustainability. In that sense I understand that it is relevant to examine subjective well-being and not just objective and material aspects. There are however many difficulties that lie in subjective questionings. Some connect happiness studies to positive psychology and compulsion of consumer culture to be happy. Therefore it can be asked that in what sense it is contributing to sustainability.
 
-So I'm interested in which variables have connection to freedom, are they forming the material chances and limitations behind it. I did multiple regression with freedom as dependent variable.
+Despite its lackings, freedom seems to me a bit more concrete or material goal than happiness. You can be happy, but not free or unhappy, but free. Freedom at least relates to some rights and possibilities, maybe there is some solid base. I'm interested in which variables have connection to freedom, are they forming chances and limitations behind it. Next I did multiple regression with freedom as dependent variable.
 
 ```{r}
 m <- lm(freedom ~ gdpcapita + socialsupport + hlifeexp + corruption + generosity, data = happiness2)
-
 summary(m)
-
 CI <- confint(m) %>% exp
 cbind(CI)
 ```
 
-In the second regression only social support, absence of corruption and generosity are statistically significant. There is positive correlation between these variables and freedom. For social support and generosity the correlation is not so strong. When absence of corruption grows by one, freedom grows by 0.46. It is comprehensible that absence of corruption in societies is a building block of freedom to do what one wants with same rules for everyone. But why is GDP per capita and healthy life expectancy not significant here? Also the estimates are very low. I would have guessed these material indicators had more effect. Though the GDP per capita does not tell about the distribution of wealth in societies. Here gini would be better variable to see whether material conditions have to do with freedom. Here it seems that freedom had to do more with trust-related variables social support, corruption and generosity. 
+In the second regression only social support, absence of corruption and generosity are statistically significant. There is positive correlation between these variables and freedom. For social support and generosity the correlation is not so strong. When absence of corruption grows by one, freedom grows by 0.46. The confidence intervals for the significant variables vary between around 0.2-0.5, they are not supernarrow considered in relation to the distributions of the variables.   
 
-The confidence intervals for the significant variables vary between around 0.2-0.5 so they are not supernarrow when considered in relation to the distributions of the variables. *LUOTTAMUSVÄLIT POIS?
+It is comprehensible that absence of corruption is a building block of freedom to do what one wants with same rules for everyone. Why are GDP per capita and healthy life expectancy not significant here? The estimates are also very low. I would have guessed these material indicators had more effect. But the GDP per capita does not tell about the distribution of wealth in societies. Here gini would be better variable to see whether material conditions have to do with freedom. Here it seems that freedom had to do more with trust-related variables social support, corruption and generosity. 
 
+Next I divided the freedom variable into two at 0.35, based on where it started getting higher values in the distribution.
 
-Then I want to divide freedom into two, based on the distributions point where it seems to start getting higher values. I decided to divide it at 0.35. 
-
-```{r}
+```{r fig.width=6, fig.height=4}
 happiness2_f <- mutate(happiness2, high_freedom = freedom > 0.35)
 g2 <- ggplot(data = happiness2_f, aes(x = high_freedom))
 g2 + geom_bar() + ggtitle("Distribution of the high freedom variable")
 ```
 
-It seems that greater share of values for freedom are high with the chosen limit. Then I do (this time logistic) regression again, without the happiness score, to see which variables have effect on the higher values of freedom.  
+It seems that greater share of values for freedom are high with the chosen limit. Next I did regression again, this time logistic regression, to see which variables have correlation with higher values of freedom.  
 
 ```{r}
 m <- glm(high_freedom ~ gdpcapita + socialsupport + hlifeexp + corruption + generosity, data = happiness2_f, family = "binomial")
@@ -163,18 +150,15 @@ CI <- confint(m) %>% exp
 cbind(OR, CI)
 ```
 
-Social support, corruption and generosity are statistically significant and they are all positively correlated with high freedom. Compared to last linear regression model the variables get 20-28 times higher correlation with high freedom. Corruption has the highest estimate of 11,62. In countries where freedom is perceived higher, social support, corruption and generosity are important explainers.
+Social support, corruption and generosity are statistically significant and they are all positively correlated with high freedom. Compared to last linear regression model the variables get 20-28 times higher correlation with high freedom. Corruption has the highest estimate of 11,62. In countries where freedom is perceived higher, social support, corruption and generosity are important explainers. The effect might be smaller if there were other explaining variables.
 
-The odds ratios seem to be large. If there is social support, a person is 3.22+01 or 32,24 times likely to have a perception of high freedom compared to if there was no social support. But if there was a perception of no corruption, a person would be 111 768 times likely to have a perception of high freedom than without. Is this right, is there any point in these numbers anymore? *CONF INT POIS?
+The odds ratios seem to be large. If there is social support, a person is 32,24 times more likely to have a perception of high freedom compared to if there was no social support. But if there was a perception of no corruption, a person would be 111 768 times more likely to have a perception of high freedom than without. I don't know is there any point in this anymore. 
 
-Linear multiple regression is suitable method for the question, when we want to examine correlations of variables and the dependent variable is continuous. *PAIKKA
+I suppose linear multiple regression is suitable method for the question, when examining correlations of variables and the dependent variable is continuous.
 
-*MEANING
+Next I did principal component analysis to see which variables are important in explaining variance. The variables are standardized before the analysis. Then I took rounded percentages of variance captured by principal components and created objects for axis labels before drawing a biplot.
 
-
-Next I want to see which variables seem to be most important with principal component analysis. I need to first standardize the variables and then perform the analysis. Then I take rounded percentages of variance captured by principal components and create objects for axis labels before drawing a biplot.
-
-```{r message=FALSE}
+```{r message=FALSE, fig.width=6, fig.height=6}
 library(MASS); library(scales)
 happiness2_std <- scale(happiness2)
 pca_happiness2_std <- prcomp(happiness2_std)
@@ -184,38 +168,31 @@ s_std
 pca_pr_std <- round(100*s_std$importance[2,], digits = 1)
 pca_pr_std
 pc_lab_std <- paste0(names(pca_pr_std), " (", pca_pr_std,"%)")
-biplot(pca_happiness2_std, cex = c(0.5, 1.5), xlab = pc_lab_std[1], ylab = pc_lab_std[2], sub = "Principal components explaining variance in standardized happiness2 data")
+biplot(pca_happiness2_std, cex = c(0.5, 1.5), col = c("black", "green"), xlab = pc_lab_std[1], ylab = pc_lab_std[2], sub = "Principal components explaining variance in standardized happiness2 data")
 ```
 
-The first principal component PC1 captures the maximum amount of variance from the features in the original data that is 53,3 %. This combination of variables capture most essential dimensions of the data. GDP per capita, healthy life expectancy, social support and happiness score contribute to PC1. The second principal component PC2 captures maximum amount of variability left. Freedom, corruption and generosity contribute to PC2. They explain 19,9 % of the variance.
+The first principal component PC1 captures the maximum amount of variance from the features in the original data that is 53,3 %. This combination of variables capture most essential dimensions of the data. GDP per capita, healthy life expectancy, social support and happiness score contribute to PC1. This corresponds to results of the first regression model. The second principal component PC2 captures maximum amount of variability left. Freedom, corruption and generosity contribute to PC2. They explain 19,9 % of the variance.
 
-So it seems that GDP per capita, healthy life expectancy, social support and happiness score explain most of the variance from the features in the happiness2 data. It means that they explain greater share of differences between countries. Freedom, corruption and generosity are not be so constituent as them in making or explaining differences and these trust-related variables not so essential in this sense.
+It seems that GDP per capita, healthy life expectancy, social support and happiness score explain most of the variance from the features in the data. It means that they explain greater share of differences between countries. Freedom, corruption and generosity are not so constituent as them in making or explaining differences and trust-related variables not so essential in this sense.
 
-In that sense happiness is a feature that we can find differences in. Differences in GDP per capita and healthy life expectancy seem quite expected, like between industrialised and developing countries. In the biplot we can see a high concentration of rich countries in the lower left corner. Not all x- and y-axis features are uncorrelated.
+Differences in GDP per capita and healthy life expectancy seem quite expected, between industrialised and developing countries. In the biplot we can see a high concentration of rich countries in the lower left corner. Not all x- and y-axis features are uncorrelated.
 
-The angle between the variables on the x-axis is quite small so the variables seem to have quite high correlation with each other. The variables on the y-axis PC2 have a wider angle between them and a bit smaller correlation. The correlation between the features and the pc axis is stronger for the features on the x-axis than for them on the y-axis. Features on the y-axis seem to have smaller standard deviations based on the lengths of the arrows (at least when enlarging the picture) and we can see that also in the table. It means that there are greater differences between countries in relation to features on the x-axis.
+The angle between the variables on the x-axis is quite small so the variables have quite high correlation with each other. The variables on the y-axis PC2 have a wider angle between them and a bit smaller correlation. The correlation between the features and the pc axis is stronger for the features on the x-axis than for them on the y-axis. Features on the y-axis seem to have smaller standard deviations based on the lengths of the arrows and we can see that also from the table. It means that there are greater differences between countries in relation to features on the x-axis.
 
-I don't know how to validate the principal component analysis method. It seems to be working well compared to previous knowledge of the data.
-
-
-
-PALJON VAIHTELUA SOCIAL SUPPORTISSA ? looginen ?
-
-menetelmien yhdistäminen
-lda/pca/mca + regressio
+PCA seems to be working well compared to previous knowledge of the data. Linear discriminant analysis, k-means clustering and multiple correspondence analysis are other methods for finding essential divisions in data and closely related to each other. K-means can be used to find clusters, not essential variables in the same way. LDA can be used to finding variables that separate classes best and the target needs to be categorical, which was not the purpose here. MCA can be used to find structure or important dimensions, like PCA, for categorical variables.
 
 
-# Conclusions and discussion 
+#### Conclusions and discussion 
 
--regressiot
-GDP per capita, healthy life expectancy, social support and happiness score explain most of the variance from the features in the happiness2 data and thereby explain greater share of differences between countries. There are also a little bit greater differences between countries in relation to these features than others. Trust-related variables freedom, corruption and generosity are not be so constituent as them in making or explaining differences.
--pca
+GDP per capita, social support, healthy life expectancy, freedom and absence of corruption are positively correlated with happiness explaining 78 % of the variation of the happiness score. Some of the confidence intervals are wide, especially for healthy life expectancy and freedom. They are perhaps not the most powerful explainers for happiness.
 
+Social support, absence of corruption and generosity are positively correlated with freedom, the correlations being not so strong though. Social support, corruption and generosity are positively correlated with high freedom (greater than 0,35). The variables get 20-28 times higher estimates than in the second model, but the odds ratios are large and confidence intervals wide. Maybe there is no point in this third regression and there should be other variables in addition. Anyway it seems that freedom has to do more with trust-related variables social support, corruption and generosity, although also contributing to the happiness score.
 
+However, most of the variance from the features and thereby greater share of differences between countries is explained by GDP per capita, healthy life expectancy, social support and happiness score. There are also a little bit greater differences between countries in relation to these features than others. Trust-related variables freedom, corruption and generosity are not so constituent as them in making or explaining differences between countries. But they could form an important component of trust and abilities.
 
+The variables explaining organization and economy of society could be dividing different types or level of development and therefore explain greater share of differences between countries. Other measures would then be of different type. Society can be highly developed, but corrupted, under authoritarian rule and non-coherent. It is interesting that freedom is not correlated with healthy life expectancy. Is it that one can be healthy under authoritarian rule? No correlation with GDP is understandable as people might compare themselves to their surroundings and GDP per capita does not measure equality of distribution of wealth. So can GDP and life expectancy explain happiness alone? Maybe the other variables are needed to give some meaning to the, possibly flawed, concept. 
 
-# An ‘abstract’ at the beginning of the page with a summary of your analysis
-# optional stuff
+What comes to freedom, are social support, corruption and generosity forming some material prerequisites? I think social support can describe one's situation, but it is not commensurate to assess society. Generosity is a weird measure in the sense that it can describe a society of low welfare based on charity or of high welfare with a strong third sector, but perhaps it would be useful to know research on it - maybe it is a telling variable. Absence of corruption is also just a perception. Together these all variables can be thought to somehow describe trust and abilities. There could be more questions for example on chances to educate oneself, move and speak out or out-of-pocket health care costs to improve measuring of freedom. 
 
 
 
