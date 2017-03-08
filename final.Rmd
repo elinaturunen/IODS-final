@@ -155,7 +155,27 @@ Social support, corruption and generosity are statistically significant and they
 
 The odds ratios seem to be large. If there is social support, a person is 32,24 times more likely to have a perception of high freedom compared to if there was no social support. But if there was a perception of no corruption, a person would be 111 768 times more likely to have a perception of high freedom than without. I don't know is there any point in this anymore. 
 
-I suppose linear multiple regression is suitable method for the question, when examining correlations of variables and the dependent variable is continuous.
+
+To validate the model I first predicted the probability of high_freedom, added the predicted probabilities to data and used the probabilities for a prediction of high_freedom. And then tabulated the target variable versus the predictions. Then initialized a plot, defined the geom as points and drew the plot. Then I defined a loss function and computed the average number of wrong predictions.
+
+```{r}
+m <- glm(high_freedom ~ socialsupport + corruption + generosity, data = happiness2_f, family = "binomial")
+probabilities <- predict(m, type = "response")
+happiness2_f <- mutate(happiness2_f, probability = probabilities)
+happiness2_f <- mutate(happiness2_f, prediction = probability > 0.35)
+table(high_freedom = happiness2_f$high_freedom, prediction = happiness2_f$prediction)
+g <- ggplot(happiness2_f, aes(x = probability, y = high_freedom, col = prediction))
+g + geom_point()
+```
+
+```{r}
+loss_func <- function(class, prob) { 
+  n_wrong <- abs(class - prob) > 0.35 
+  mean(n_wrong) }
+loss_func(class = happiness2_f$highuse, prob = happiness2_f$probability)
+```
+
+Social support, corruption and generosity were statistically significant so they were used. Prediction does not capture right amount of high freedom or its magnitude. The predictive power of the model seems to be not very good. The plot shows insufficiency of the prediction. I don't know why I got the not-a-number from the loss function and ran out of time to learn that (understood what is meant by validation task last minute).
 
 
 Next I did principal component analysis to see which variables are important in explaining variance. The variables are standardized before the analysis. Then I took rounded percentages of variance captured by principal components and created objects for axis labels before drawing a biplot.
@@ -180,8 +200,6 @@ It seems that GDP per capita, healthy life expectancy, social support and happin
 Differences in GDP per capita and healthy life expectancy seem quite expected, between industrialised and developing countries. In the biplot we can see a high concentration of rich countries in the lower left corner. Not all x- and y-axis features are uncorrelated.
 
 The angle between the variables on the x-axis is quite small so the variables have quite high correlation with each other. The variables on the y-axis PC2 have a wider angle between them and a bit smaller correlation. The correlation between the features and the pc axis is stronger for the features on the x-axis than for them on the y-axis. Features on the y-axis seem to have smaller standard deviations based on the lengths of the arrows and we can see that also from the table. It means that there are greater differences between countries in relation to features on the x-axis.
-
-PCA seems to be working well compared to previous knowledge of the data. Linear discriminant analysis, k-means clustering and multiple correspondence analysis are other methods for finding essential divisions in data and closely related to each other. K-means can be used to find clusters, not essential variables in the same way. LDA can be used to finding variables that separate classes best and the target needs to be categorical, which was not the purpose here. MCA can be used to find structure or important dimensions, like PCA, for categorical variables.
 
 
 #### Conclusions and discussion 
