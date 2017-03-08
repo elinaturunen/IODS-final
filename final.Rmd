@@ -133,6 +133,16 @@ In the second regression only social support, absence of corruption and generosi
 
 It is comprehensible that absence of corruption is a building block of freedom to do what one wants with same rules for everyone. Why are GDP per capita and healthy life expectancy not significant here? The estimates are also very low. I would have guessed these material indicators had more effect. But the GDP per capita does not tell about the distribution of wealth in societies. Here gini would be better variable to see whether material conditions have to do with freedom. Here it seems that freedom had to do more with trust-related variables social support, corruption and generosity. 
 
+Next I did validation of the regression model with diagnostic plots, but was not able to interpret these. (Unfortunately I understood what is meant by validation task last minute and ran out of time with all these validation parts. I need to learn more on these.)
+
+```{r}
+model <- lm(freedom ~ gdpcapita + socialsupport + hlifeexp + corruption + generosity, data = happiness2)
+par(mfrow = c(2,2))
+plot(model, which = c(1,2,5))
+```
+
+
+
 Next I divided the freedom variable into two at 0.35, based on where it started getting higher values in the distribution.
 
 ```{r fig.width=6, fig.height=4}
@@ -175,7 +185,7 @@ loss_func <- function(class, prob) {
 loss_func(class = happiness2_f$highuse, prob = happiness2_f$probability)
 ```
 
-Social support, corruption and generosity were statistically significant so they were used. Prediction does not capture right amount of high freedom or its magnitude. The predictive power of the model seems to be not very good. The plot shows insufficiency of the prediction. I don't know why I got the not-a-number from the loss function and ran out of time to learn that (understood what is meant by validation task last minute).
+Social support, corruption and generosity were statistically significant so they were used. Prediction does not capture right amount of high freedom or its magnitude. The predictive power of the model seems to be not very good. The plot shows insufficiency of the prediction. I don't know why I got the not-a-number from the loss function (and ran out of time to learn that).
 
 
 Next I did principal component analysis to see which variables are important in explaining variance. The variables are standardized before the analysis. Then I took rounded percentages of variance captured by principal components and created objects for axis labels before drawing a biplot.
@@ -200,6 +210,8 @@ It seems that GDP per capita, healthy life expectancy, social support and happin
 Differences in GDP per capita and healthy life expectancy seem quite expected, between industrialised and developing countries. In the biplot we can see a high concentration of rich countries in the lower left corner. Not all x- and y-axis features are uncorrelated.
 
 The angle between the variables on the x-axis is quite small so the variables have quite high correlation with each other. The variables on the y-axis PC2 have a wider angle between them and a bit smaller correlation. The correlation between the features and the pc axis is stronger for the features on the x-axis than for them on the y-axis. Features on the y-axis seem to have smaller standard deviations based on the lengths of the arrows and we can see that also from the table. It means that there are greater differences between countries in relation to features on the x-axis.
+
+(I don't know how to validate PCA analysis. Could it be done with train and test sets?)
 
 
 #### Conclusions and discussion 
